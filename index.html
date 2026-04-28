@@ -3,136 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS CORE | ABSOLUTE CONTROL</title>
+    <title>NEXUS CORE | SYSTEM OVERRIDE</title>
     <style>
-        /* डार्क साइबर थीम - जो रिप्लिट की पहचान मिटा देगा */
-        body, html {
-            margin: 0; padding: 0;
-            background-color: #000;
-            color: #00ffcc;
-            font-family: 'Courier New', monospace;
-            height: 100vh; overflow: hidden;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; overflow: hidden; font-family: 'Courier New', monospace; }
 
-        #terminal {
-            padding: 20px;
-            height: 80vh;
-            overflow-y: auto;
-            border-bottom: 2px solid #00ffcc33;
-        }
+        /* मैट्रिक्स इफ़ेक्ट वाला कैनवास */
+        #matrix { position: fixed; top: 0; left: 0; z-index: 1; }
 
-        .input-area {
+        /* सेंटर पैनल */
+        .container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
             display: flex;
-            padding: 10px;
-            background: #0a0a0a;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
         }
 
-        #command-input {
-            background: transparent;
-            border: none;
+        .logo {
+            font-size: 3rem;
             color: #00ffcc;
-            font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
-            width: 100%;
-            outline: none;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            text-shadow: 0 0 20px #00ffcc;
+            margin-bottom: 20px;
+            animation: glitch 1s infinite;
         }
 
-        .cursor { color: #00ffcc; font-weight: bold; margin-right: 10px; }
+        @keyframes glitch {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(2deg); color: #fff; }
+            40% { transform: skew(-2deg); }
+            100% { transform: skew(0deg); }
+        }
 
-        .btn-launch {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 20px 50px;
-            background: transparent;
-            color: #00ffcc;
-            border: 2px solid #00ffcc;
+        .desc { color: #888; font-size: 1rem; margin-bottom: 50px; }
+
+        /* सबसे ताक़तवर बटन */
+        .power-btn {
+            padding: 20px 60px;
             font-size: 1.5rem;
             font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 0 20px #00ffcc55;
-            transition: 0.3s;
-        }
-
-        .btn-launch:hover {
-            background: #00ffcc;
             color: #000;
-            box-shadow: 0 0 50px #00ffcc;
+            background: #00ffcc;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 30px #00ffcc;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
 
-        .scanline {
-            width: 100%; height: 2px;
-            background: rgba(0, 255, 204, 0.1);
-            position: absolute;
-            animation: scan 4s linear infinite;
+        .power-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 60px #fff;
+            transform: scale(1.1);
         }
 
-        @keyframes scan { from { top: 0; } to { top: 100%; } }
+        .footer { position: absolute; bottom: 20px; color: #333; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-<div class="scanline"></div>
+    <canvas id="matrix"></canvas>
 
-<div id="terminal">
-    <div style="color: #00ffcc; font-weight: bold;">[SYSTEM INITIALIZING...]</div>
-    <div id="logs"></div>
-</div>
-
-<button class="btn-launch" onclick="breakTheLimits()">BYPASS & START SYSTEM</button>
-
-<div class="input-area">
-    <span class="cursor">NEXUS_CORE > </span>
-    <input type="text" id="command-input" placeholder="Enter security key..." readonly>
-</div>
-
-<script>
-    const logs = document.getElementById('logs');
-    const messages = [
-        "Connecting to Cyber-Nexus-Core...",
-        "Bypassing Replit Frame Constraints...",
-        "Establishing Secure Node...",
-        "Encrypting Connection gxplcp.biz...",
-        "System Ready. Limits Broken."
-    ];
-
-    let i = 0;
-    function printLogs() {
-        if (i < messages.length) {
-            let p = document.createElement('div');
-            p.innerHTML = `> ${messages[i]}`;
-            logs.appendChild(p);
-            i++;
-            setTimeout(printLogs, 800);
-        }
-    }
-    printLogs();
-
-    function breakTheLimits() {
-        // यह कमांड रिप्लिट की पाबंदियों को तोड़कर उसे एक अलग लेयर में खोल देगी
-        const targetURL = "https://cyber-nexus-core--gxplcpbiz.replit.app/";
+    <div class="container">
+        <div class="logo">Nexus Core</div>
+        <div class="desc">UNAUTHORIZED ACCESS DETECTED... BYPASSING GATEWAY</div>
         
-        // हम इसे पूरी तरह से एक नई विंडो में 'Popup' के तौर पर खोलेंगे
-        // जिससे 'Connection Closed' वाली समस्या जड़ से खत्म हो जाएगी
-        const win = window.open("", "NexusCore", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=" + screen.width + ",height=" + screen.height);
+        <button class="power-btn" onclick="fireLink()">Start System</button>
         
-        if (win) {
-            win.document.write(`
-                <html>
-                <head><title>Nexus Core Loaded</title></head>
-                <body style="margin:0; padding:0; background:#000;">
-                    <iframe src="${targetURL}" style="width:100%; height:100vh; border:none;"></iframe>
-                </body>
-                </html>
-            `);
-        } else {
-            // अगर पॉपअप ब्लॉक हो तो सीधे रिप्लिट पर भेज दो
-            window.location.href = targetURL;
-        }
-    }
-</script>
+        <div class="footer">STATION ID: GXPLCP // 854336-INDIA</div>
+    </div>
 
+    <script>
+        // मैट्रिक्स बैकग्राउंड कोडिंग
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#00ffcc33";
+            ctx.font = fontSize + "px arial";
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+
+        // लिंक को फायर करने वाला फंक्शन
+        function fireLink() {
+            // हम 'window.location.replace' का उपयोग करेंगे ताकि रिप्लिट को लगे कि 
+            // यह एक फ्रेश रिक्वेस्ट है, कोई फ्रेम नहीं।
+            window.open("https://cyber-nexus-core--gxplcpbiz.replit.app/", "_blank");
+        }
+    </script>
 </body>
 </html>
+
