@@ -3,115 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS CORE | SYSTEM OVERRIDE</title>
+    <title>Cyber Nexus Core | Secure Access</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; overflow: hidden; font-family: 'Courier New', monospace; }
-
-        /* मैट्रिक्स इफ़ेक्ट वाला कैनवास */
-        #matrix { position: fixed; top: 0; left: 0; z-index: 1; }
-
-        /* सेंटर पैनल */
-        .container {
-            position: relative;
-            z-index: 10;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.7);
+        /* पूरी स्क्रीन को लॉक करने के लिए */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* ताकि कोई स्क्रॉल न कर सके */
+            background-color: #000;
         }
 
-        .logo {
-            font-size: 3rem;
-            color: #00ffcc;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            text-shadow: 0 0 20px #00ffcc;
-            margin-bottom: 20px;
-            animation: glitch 1s infinite;
+        .system-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* हम फ्रेम को 50px एक्स्ट्रा लंबा करेंगे ताकि Replit का लोगो नीचे दब जाए */
+            height: calc(100% + 50px); 
         }
 
-        @keyframes glitch {
-            0% { transform: skew(0deg); }
-            20% { transform: skew(2deg); color: #fff; }
-            40% { transform: skew(-2deg); }
-            100% { transform: skew(0deg); }
-        }
-
-        .desc { color: #888; font-size: 1rem; margin-bottom: 50px; }
-
-        /* सबसे ताक़तवर बटन */
-        .power-btn {
-            padding: 20px 60px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #000;
-            background: #00ffcc;
+        iframe {
+            width: 100%;
+            height: 100%;
             border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 0 30px #00ffcc;
-            transition: 0.3s;
-            text-transform: uppercase;
+            /* ये कमांड्स रिप्लिट के एक्स्ट्रा मेनू को छुपाने में मदद करती हैं */
+            overflow: hidden;
         }
 
-        .power-btn:hover {
-            background: #fff;
-            box-shadow: 0 0 60px #fff;
-            transform: scale(1.1);
+        /* एक ऊपरी पट्टी (Overlay) ताकि लुक और भी प्रोफेशनल लगे */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #00ffcc;
+            z-index: 100;
+            box-shadow: 0 0 15px #00ffcc;
         }
-
-        .footer { position: absolute; bottom: 20px; color: #333; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <canvas id="matrix"></canvas>
+    <div class="top-bar"></div>
 
-    <div class="container">
-        <div class="logo">Nexus Core</div>
-        <div class="desc">UNAUTHORIZED ACCESS DETECTED... BYPASSING GATEWAY</div>
-        
-        <button class="power-btn" onclick="fireLink()">Start System</button>
-        
-        <div class="footer">STATION ID: GXPLCP // 854336-INDIA</div>
+    <div class="system-container">
+        <iframe 
+            src="https://cyber-nexus-core--gxplcpbiz.replit.app/?embed=1" 
+            allow="fullscreen">
+        </iframe>
     </div>
 
-    <script>
-        // मैट्रिक्स बैकग्राउंड कोडिंग
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^";
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function draw() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#00ffcc33";
-            ctx.font = fontSize + "px arial";
-            for (let i = 0; i < drops.length; i++) {
-                const text = letters[Math.floor(Math.random() * letters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-        }
-        setInterval(draw, 33);
-
-        // लिंक को फायर करने वाला फंक्शन
-        function fireLink() {
-            // हम 'window.location.replace' का उपयोग करेंगे ताकि रिप्लिट को लगे कि 
-            // यह एक फ्रेश रिक्वेस्ट है, कोई फ्रेम नहीं।
-            window.open("https://cyber-nexus-core--gxplcpbiz.replit.app/", "_blank");
-        }
-    </script>
 </body>
 </html>
-
