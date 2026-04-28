@@ -3,106 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Nexus Core | System Alpha</title>
+    <title>Cyber Nexus Core | Pro</title>
     <style>
-        /* साइबरपंक और डार्क थीम */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #050505;
+            background-color: #000;
             color: #00ffcc;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            margin: 0;
         }
 
-        /* बैकग्राउंड में हल्का चमकता हुआ असर */
-        body::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, #00ffcc1a 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .main-panel {
+        .box {
             text-align: center;
+            border: 1px solid #00ffcc;
             padding: 40px;
-            border: 1px solid #00ffcc33;
-            background: rgba(10, 10, 10, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(0, 255, 204, 0.1);
-            backdrop-filter: blur(10px);
-            max-width: 90%;
+            box-shadow: 0 0 20px #00ffcc55;
         }
 
-        h1 {
-            font-size: 2.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            text-shadow: 0 0 15px #00ffcc;
-        }
-
-        .status {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
-        }
-
-        /* स्टार्ट बटन की डिजाइन */
-        .start-btn {
-            display: inline-block;
-            padding: 18px 50px;
-            font-size: 1.4rem;
+        .btn {
+            background: #00ffcc;
+            color: #000;
+            padding: 15px 30px;
+            font-size: 20px;
             font-weight: bold;
-            color: #050505;
-            background-color: #00ffcc;
-            text-decoration: none;
-            border-radius: 50px;
-            text-transform: uppercase;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+            border: none;
             cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px #00ffcc;
         }
 
-        .start-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px #00ffcc;
-            letter-spacing: 3px;
-        }
-
-        .footer-text {
-            margin-top: 30px;
-            font-size: 0.7rem;
-            color: #444;
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #00ffcc;
         }
     </style>
 </head>
 <body>
 
-    <div class="main-panel">
-        <h1>CYBER NEXUS CORE</h1>
-        <p class="status">INTELLIGENCE SYSTEM IS ONLINE</p>
+    <div class="box">
+        <h1>NEXUS CORE OS</h1>
+        <p>SYSTEM READY FOR DEPLOYMENT</p><br>
         
-        <a href="https://cyber-nexus-core--gxplcpbiz.replit.app/" target="_blank" class="start-btn">
-            START SYSTEM
-        </a>
-
-        <div class="footer-text">
-            SECURE CONNECTION ENCRYPTED // NODE: GXPLCP
-        </div>
+        <button onclick="launchSystem()" class="btn">START SYSTEM</button>
     </div>
+
+    <script>
+        function launchSystem() {
+            // यह कोड एक नई विंडो खोलेगा जिसमें फालतू की चीजें नहीं होंगी
+            let url = "https://cyber-nexus-core--gxplcpbiz.replit.app/?embed=1";
+            let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${screen.width},height=${screen.height},left=0,top=0`;
+            
+            window.open(url, "CyberNexus", params);
+        }
+    </script>
 
 </body>
 </html>
-
